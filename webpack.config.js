@@ -1,10 +1,7 @@
+const webpack = require('webpack');
 const path = require('path');
-const environment = process.env.NODE_ENV;
-const configs {
-	dev: {},
-	qa: {},
-	prod: {}
-}
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = (env = {}) => {
 	return {
@@ -12,11 +9,20 @@ module.exports = (env = {}) => {
 			'babel-polyfill',
 			'./src/index.js',
 		],
+		plugins: [
+			new CleanWebpackPlugin(['dist']),
+			new HtmlWebpackPlugin({
+				title: 'Output Management'
+			}),
+		],
 		output: {
-			filename: 'bundle.js',
+			filename: '[name].bundle.js',
 			path: path.resolve(__dirname, 'dist')
 		},
-		devtool: 'source-map',
+		devtool: 'inline-source-map',
+		devServer: {
+			contentBase: './dist'
+		},
 		module: {
 			rules: [{
 				test: /\.less$/,
