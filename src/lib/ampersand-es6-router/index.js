@@ -5,7 +5,6 @@ import extend from 'lodash/assign';
 import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 import result from 'lodash/result';
-
 import ampHistory from 'ampersand-router/ampersand-history';
 
 // Cached regular expressions for matching named param parts and splatted
